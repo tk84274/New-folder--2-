@@ -1,0 +1,45 @@
+.container {
+    border: solid 1px skyblue;
+    background-color: whitesmoke;
+    width: 60%;
+    font-family:'Open Sans', sans-serif;
+    font-size: 15px;
+}
+h4{
+    color: darkblue;
+    margin-top: 2px;
+    text-align: center;
+    background-color: #b7b7b7;
+}
+#new-vendor-name{
+    padding-right: 40px;
+}
+.heading{
+    border: solid 1px skyblue;
+    background-color: #b7b7b7;
+    height: 25px;
+}
+td{
+    padding: 8px;
+}
+label{
+    padding: 4.5px;
+}
+input[type="submit"]{
+    position: absolute;
+    right: 50%;
+}
+.submit-button{
+    position: relative;
+    right: 0%;
+    display: flex;
+    align-items: center;
+    
+    background-color: #b7b7b7;
+    height: 25px;
+}
+input[type="date"]{
+    padding-right: 40px;
+}
+
+

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CAFE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="heading">
+        <h4>Cafe Add/Edit Item</h4>
+      </div>
+      <div class="form-container">
+        <form action="" method="post" id="myForm" target="_blank" onsubmit="display()">
+          <div class="first-box">
+            <table id="box-1">
+              <tr>
+                <td>
+                  <label for="item-name"><b>Item Name</b></label>
+                  <input
+                    type="text"
+                    name="item-name"
+                    id="item-name"
+                    onchange="letters(this.value)"
+                    required
+                  />
+                  <span style="color: red">*</span>
+                </td>
+                <td>
+                  <label for="display-name"><b>Display Name</b></label>
+                  <input
+                    type="text"
+                    name="display-name"
+                    id="display-name"
+                    required
+                  />
+                  <span style="color: red">*</span>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <label for="shortcut-key"><b>Shortcut Key</b></label>
+                  <input
+                    type="text"
+                    name="shortcut-key"
+                    id="shortcut-key"
+                  />
+                </td>
+                <td>
+                  <label for="shortcut-no"><b>Shortcut No</b></label>
+                  <input
+                    type="number"
+                    name="shortcut-no"
+                    id="shortcut-no"
+                    min="1"
+                    max="100"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="vendor-name"><b>Vendor Name</b></label>
+                </td>
+
+                <td>
+                  <label for="new-vendor-name"><b>New Vendor Name</b></label>
+                  <select name="new-vendor-name" id="new-vendor-name">
+                    <option value="">--SELECT VENDOR--</option>
+                    <option value="bikano">Bikano</option>
+                    <option value="ccd">Cafe Coffee Day</option>
+                    <option value="ccdblr">Cafe Coffee Day(BLR)</option>
+                    <option value="kanand">K ANAND CATERERS(NOIDA)</option>
+                    <option value="anandjuice">anand juice</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type="checkbox" name="is-non-veg" id="is-non-veg" />
+                  <label for="is-non-veg"><b>Is Non Veg</b></label>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <!-- Box-2 -->
+          <div id="second-box">
+            <table id="box-2">
+              <tr>
+                <td>
+                  <label for="current-item-cost"
+                    ><b>Current Item Cost</b></label
+                  >
+
+                  <input
+                    type="number"
+                    name="current-item-cost"
+                    id="current-item-cost"
+                    value="0.0"
+                    readonly
+                  />
+                </td>
+                <td>
+                  <label for="new-item-cost"><b>New Item Cost</b></label>
+                  <input
+                    type="number"
+                    name="new-item-cost"
+                    id="new-item-cost"
+                    step="any"
+                    onchange="roundoff(this.value)"
+                    value="0.0"
+                    required
+                  />
+                  <span style="color: red">*</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="current-applicable-tax"
+                    ><b>Current Applicable Tax</b></label
+                  >
+                  <input
+                    type="number"
+                    name="current-applicable-tax"
+                    id="current-applicable-tax"
+                    value="0.0"
+                    readonly
+                  />
+                </td>
+                <td>
+                  <label for="new-applicable-tax"
+                    ><b>New Applicable Tax</b></label
+                  >
+                  <input
+                    type="number"
+                    name="new-applicable-tax"
+                    id="new-applicable-tax"
+                    step="any"
+                    value="0.0"
+                    readonly
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="current-applicability-date"
+                    ><b>Current Applicability Date</b></label
+                  >
+                  <input
+                    type="text"
+                    name="current-applicability-date"
+                    id="current-applicability-date"
+                    readonly
+                  />
+                </td>
+                <td>
+                  <label for="new-applicability-date"
+                    ><b>New Applicability date</b></label
+                  >
+                  <input
+                    type="date"
+                    name="new-applicability-date"
+                    id="new-applicability-date"
+                    required
+                  />
+                  <span style="color: red">*</span>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <!-- submit button -->
+        
+      </div>
+      <div class="submit-button">
+        <input type="submit" value="Submit" />
+      </div>
+      </form>
+    </div>
+    <script>
+      function letters(item) {
+        var letters = /^[A-Za-z ]+$/;
+        if (item.match(letters)) {
+          return;
+        } else {
+          alert("Only letters allowed in Item Name field");
+        }
+      }
+      function roundoff(item){
+          let newItem = item.toString();
+          let dotIndex = newItem.indexOf(".");
+          let len = item.length;
+          if(dotIndex==-1){
+              dotIndex=len-1;
+          }
+          let afterDecimalDigits=len-(dotIndex+1);
+          console.log(dotIndex);
+
+          if(afterDecimalDigits>2){
+              alert("Value upto 2 decimal places allowed in new item cost field");
+              return;
+          }
+
+          let new_appl_tax = document.getElementById("new-applicable-tax");
+          new_appl_tax.value = item/10;
+      }
+      var todayDate = new Date();
+      var month = todayDate.getMonth(); 
+      var year = todayDate.getUTCFullYear() - 0; 
+      var tdate = todayDate.getDate(); 
+      if(month < 10){
+        month = "0" + month 
+      }
+      if(tdate < 10){
+        tdate = "0" + tdate;
+      }
+      var maxDate = year + "-" + month + "-" + tdate;
+      document.getElementById("new-applicability-date").setAttribute("min", maxDate);
+      console.log(maxDate);
+
+      function display(){
+        //   document.myForm.target="_blank";
+        var new_item_cos = document.getElementById("new-item-cost").value;
+          var w = window.open("","_blank","width=500,height=500,toolbar=0");
+          w.document.write("Item Name : " + document.getElementById("item-name").value + "<br>" + "Display Name : " + document.getElementById("display-name").value + "<br>" + "Shortcut Key : " + document.getElementById("shortcut-key").value + "<br>" + "Shortcut No : " + document.getElementById("shortcut-no").value + "<br>" + "New Vendor Name : " + document.getElementById("new-vendor-name").value + "<br>" + "Is Non Veg : " + document.getElementById("is-non-veg").value+ "<br>" + "New Item Cost : " + document.getElementById("new-item-cost").value+ "<br>" + "New Applicable Tax : " + new_item_cos/10 + "<br>" + "New Applicability Date : " + document.getElementById("new-applicability-date").value); 
+          
+        //     + "<br>" + );
+        //   //window.print(document.getElementById("item-name").value);
+          var item_name = document.getElementById("item-name").value;
+          var display_name = document.getElementById("display-name").value;
+          var shortcut_key = document.getElementById("shortcut-key").value;
+          var shortcut_no = document.getElementById("shortcut-no").value;
+          var new_vendor_name = document.getElementById("new-vendor-name").value;
+          var is_non_veg = document.getElementById("is-non-veg").value;
+          var new_item_cost = document.getElementById("new-item-cost").value;
+          var new_appl_tax = document.getElementById("new-applicability-tax").value;
+          var new_appl_date = document.getElementById("new-applicability-date").value;
+
+          
+          
+      }
+    </script>
+  </body>
+</html>
